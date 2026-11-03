@@ -34,7 +34,7 @@ var _ drpc.Conn = (*Conn)(nil)
 func Dial(network, address string) *Conn {
 	pool := drpcpool.New[string, *drpcconn.Conn](drpcpool.Options{
 		Expiration:  5 * time.Minute,
-		KeyCapacity: 8,
+		KeyCapacity: 32,
 	})
 	dial := func(ctx context.Context, _ string) (*drpcconn.Conn, error) {
 		var d net.Dialer
